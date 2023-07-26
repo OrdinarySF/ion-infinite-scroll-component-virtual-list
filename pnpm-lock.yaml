@@ -20,9 +20,6 @@ dependencies:
   '@capacitor/keyboard':
     specifier: 5.0.5
     version: 5.0.5(@capacitor/core@5.1.0)
-  '@capacitor/plugin-demo':
-    specifier: link:..\capacitor-plugin-demo
-    version: link:../capacitor-plugin-demo
   '@capacitor/status-bar':
     specifier: 5.0.5
     version: 5.0.5(@capacitor/core@5.1.0)
@@ -32,9 +29,6 @@ dependencies:
   '@ionic/vue-router':
     specifier: ^7.0.0
     version: 7.0.0
-  '@ordinary/capacitor-websocket-client':
-    specifier: link:..\capacitor-websocket-client
-    version: link:../capacitor-websocket-client
   ionicons:
     specifier: ^7.0.0
     version: 7.0.0
