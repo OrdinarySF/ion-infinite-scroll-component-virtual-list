@@ -22,7 +22,7 @@ const loading = ref(false);
 
 const generateItems = () => {
   const count = items.length + 1;
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     items.push(`Item ${count + i}`);
   }
 };
@@ -54,22 +54,14 @@ generateItems();
         <ion-refresher-content :pulling-icon='chevronDownCircleOutline' refreshing-spinner='circles'
                                pulling-text='下拉刷新' refreshing-text='刷新中...'/>
       </ion-refresher>
-      <DynamicScroller class='ion-content-scroll-host ion-padding scroller h-full overflow-scroll'
+      <RecycleScroller class='ion-content-scroll-host scroller'
+                       v-slot='{item,index}'
                        :items='items' :min-item-size='54'>
-        <template #before>
-          Hey! I'm a message displayed before the items!
-          <ion-item role='article'>固定内容</ion-item>
-        </template>
-        <template v-slot='{item,index,active}'>
-          <DynamicScrollerItem :item='item' :active='active'
-                               :size-dependencies='[ item.message, ]' :data-index='index'>
-            <ion-item>
-              <ion-button @click="router.push('/product')">前往产品</ion-button>
-              <p>{{ item }}+{{ index + 1 }}</p>
-            </ion-item>
-          </DynamicScrollerItem>
-        </template>
-      </DynamicScroller>
+        <ion-item>
+          <ion-button @click="router.push('/product')">前往产品</ion-button>
+          <p>{{ item }}+{{ index + 1 }}</p>
+        </ion-item>
+      </RecycleScroller>
       <ion-infinite-scroll @ionInfinite='ionInfinite'>
         <ion-infinite-scroll-content loadingSpinner='bubbles' loadingText='正在加载更多数据……'/>
       </ion-infinite-scroll>
@@ -78,5 +70,7 @@ generateItems();
 </template>
 
 <style scoped>
-
+.scroller {
+  height: 100%;
+}
 </style>
