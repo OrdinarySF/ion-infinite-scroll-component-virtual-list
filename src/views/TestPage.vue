@@ -54,17 +54,21 @@ generateItems();
         <ion-refresher-content :pulling-icon='chevronDownCircleOutline' refreshing-spinner='circles'
                                pulling-text='下拉刷新' refreshing-text='刷新中...'/>
       </ion-refresher>
-      <RecycleScroller class='ion-content-scroll-host scroller'
-                       v-slot='{item,index}'
+      <recycle-scroller class='ion-content-scroll-host scroller'
                        :items='items' :min-item-size='54'>
-        <ion-item>
-          <ion-button @click="router.push('/product')">前往产品</ion-button>
-          <p>{{ item }}+{{ index + 1 }}</p>
-        </ion-item>
-      </RecycleScroller>
-      <ion-infinite-scroll @ionInfinite='ionInfinite'>
-        <ion-infinite-scroll-content loadingSpinner='bubbles' loadingText='正在加载更多数据……'/>
-      </ion-infinite-scroll>
+        <template v-slot='{item,index}'>
+          <ion-item>
+            <ion-button @click="router.push('/product')">前往产品</ion-button>
+            <p>{{ item }}+{{ index + 1 }}</p>
+          </ion-item>
+        </template>
+
+        <template #after>
+          <ion-infinite-scroll @ionInfinite='ionInfinite'>
+            <ion-infinite-scroll-content loadingSpinner='bubbles' loadingText='正在加载更多数据……'/>
+          </ion-infinite-scroll>
+        </template>
+      </recycle-scroller>
     </ion-content>
   </ion-page>
 </template>
